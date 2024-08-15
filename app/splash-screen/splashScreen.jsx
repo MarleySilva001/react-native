@@ -18,7 +18,7 @@ const style = StyleSheet.create({
         left: 0,
         right: 0,
         top: 0,
-        height: 900,
+        height: '100%',
     },
 })
 
@@ -26,7 +26,7 @@ const style = StyleSheet.create({
 const splashScreen = function () {
     return <View style={style.container}>
         <LinearGradient
-            colors={['yellow', 'green']}
+            colors={['#FFEF00', '#00E53D']}
             style={style.background}
         />
         <Image
