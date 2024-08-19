@@ -13,14 +13,17 @@ function Index() {
         switch (tipo) {
             case 'saque':
                 if (Valor > conta) {
+        
                     alert('saldo indisponível')
                 }else{
-                setConta(prevConta => prevConta - Valor)
+                const multa = (conta - Valor) * 0.025
+                setConta(conta - Valor - multa)
             }
                 break;
 
             case 'deposito':
-                setConta(prevConta => prevConta + Valor)
+                const bonus = Valor * 0.01
+                setConta(conta + Valor + bonus)
                 break;
         
             default:
