@@ -32,9 +32,6 @@ const App = () => {
                 })
             })
             .then(response => response.json())
-            .then(data => { 
-                console.log(data);
-            })
             .catch(error => {
                 console.error(error);
             });
@@ -59,6 +56,7 @@ const App = () => {
                     nome={'senha'}
                     value={formData.senha}
                     onChangeText={(value) => handleInputChange('senha', value)}
+                    secureTextEntry={true}
                 />
             </View>
             <Pressable style={styles.button}
