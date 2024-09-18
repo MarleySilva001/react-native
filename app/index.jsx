@@ -33,6 +33,10 @@ const Rotas = () => {
                href={"/splashScreen"}
                text={"Splash Screen"}
                />
+               <ButtonR 
+               href={"/sobreMim"}
+               text={"Sobre Mim"}
+               />
             </View>
         </View>
     )
