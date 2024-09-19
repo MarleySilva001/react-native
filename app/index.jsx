@@ -1,42 +1,50 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import ButtonR from "./buttonRouter";
 
 const Rotas = () => {
+
+    const data =  [
+        {
+            id: '1', href: "/Santander" , text:"banco santander"
+        },
+        {
+            id: '2', href:"/calculadora 2.0",  text:"calculadora 2"
+        },
+        {
+            id: '3', href:"/calculadora simples",  text:"calculadora 1"
+        },
+        {
+            id: '4', href:"/pokemon",  text:"pokemon"
+        },
+        {
+            id: '5', href:"/TaskHub",  text:"Task Hub"
+        },
+        {
+            id: '6', href:"/lista-tarefa",  text:"Lista Tarefa"
+        },
+        {
+            id: '7', href:"/splashScreen",  text:"Splash Screen"
+        },
+        {
+            id: '8', href:"/sobreMim",  text:"Sobre Mim"
+        },
+    ]
+
     return (
         <View style={styles.container}>
             <View style={styles.liRotas}>
-               <ButtonR 
-               href={"/Santander"}
-               text={"banco santander"}
+            <FlatList 
+            data={data}
+            keyExtractor={(item) => item.id}
+            renderItem={({item}) =>(
+                <ButtonR 
+               href={item.href}
+               text={item.text}
                />
-               <ButtonR 
-               href={"/calculadora 2.0"}
-               text={"calculadora 2"}
-               />
-               <ButtonR 
-               href={"/calculadora simples"}
-               text={"calculadora 1"}
-               />
-               <ButtonR 
-               href={"/pokemon"}
-               text={"pokemon"}
-               />
-               <ButtonR 
-               href={"/TaskHub"}
-               text={"Task Hub"}
-               />
-               <ButtonR 
-               href={"/lista-tarefa"}
-               text={"Lista Tarefa"}
-               />
-               <ButtonR 
-               href={"/splashScreen"}
-               text={"Splash Screen"}
-               />
-               <ButtonR 
-               href={"/sobreMim"}
-               text={"Sobre Mim"}
-               />
+            )}
+            />
+               
+               
             </View>
         </View>
     )
@@ -53,7 +61,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         gap: 6,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 10,
     },

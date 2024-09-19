@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, View, Pressable, Image, FlatList } from "react-native"
-import ButtonSM from "./buttonSM"
 import { Link } from "expo-router"
+import ButtonR from "../buttonRouter"
 
 const sobreMim = () => {
     const data = [
@@ -29,7 +29,7 @@ const sobreMim = () => {
             data={data}
             keyExtractor={(item) => item.id}
             renderItem={({item}) =>(
-                <ButtonSM 
+                <ButtonR 
                 href={item.href}
                 text={item.nome}
                 />
@@ -53,10 +53,12 @@ foto:{
 },
 h1:{
     fontWeight: 'bold',
-    fontSize: 34
+    fontSize: 34,
+    marginVertical: 6
 },
 p:{
-    width:350
+    width:450,
+    textAlign: 'justify'
 }
 })
 
