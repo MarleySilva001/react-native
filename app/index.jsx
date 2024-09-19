@@ -1,5 +1,6 @@
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, Pressable, Text } from "react-native";
 import ButtonR from "./buttonRouter";
+import { Link } from "expo-router";
 
 const Rotas = () => {
 
@@ -43,8 +44,11 @@ const Rotas = () => {
                />
             )}
             />
-               
-               
+               <Link href={'/sobreMim'}>
+               <Pressable>
+                <Text>Clique aqui</Text>
+               </Pressable>
+               </Link>
             </View>
         </View>
     )

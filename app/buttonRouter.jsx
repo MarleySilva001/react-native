@@ -13,7 +13,7 @@ const ButtonR = ({href, text}) => {
 
 const styles = StyleSheet.create({
     button : {
-        color: 'white',
+        color: '#fff',
         backgroundColor: '#00BF66',
         width: 300,
         borderRadius: 10,
