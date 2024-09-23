@@ -40,6 +40,7 @@ const Livro = () => {
                 icon={<MdArrowBack />}
                 href={'/sobreMim'}
                 Titulo={'livro'}
+                cor={'#00BF66'}
             />
             <View style={styles.container}>
                 <FlatList 

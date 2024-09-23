@@ -29,6 +29,9 @@ const Rotas = () => {
         {
             id: '8', href:"/sobreMim",  text:"Sobre Mim"
         },
+        {
+            id: '9', href:"/iFome",  text:"iFome"
+        },
     ]
 
     return (
@@ -38,10 +41,11 @@ const Rotas = () => {
             data={data}
             keyExtractor={(item) => item.id}
             renderItem={({item}) =>(
+                <Link href={item.href}>
                 <ButtonR 
-               href={item.href}
                text={item.text}
                />
+               </Link>
             )}
             />
                <Link href={'/sobreMim'}>

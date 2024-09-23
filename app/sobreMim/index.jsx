@@ -23,6 +23,7 @@ const sobreMim = () => {
                 icon={<MdHome />}
                 href={'/'}
                 Titulo={'Sobre Mim'}
+                cor={'#00BF66'}
             />
             <View style={styles.container}>
                 <Image

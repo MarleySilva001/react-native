@@ -1,18 +1,16 @@
 import { Link } from "expo-router";
 import { Text, Pressable, StyleSheet } from "react-native";
 
-const ButtonR = ({href, text}) => {
-    return(
-        <Link href={href}>
-                <Pressable style={styles.button}>
-                    <Text style={styles.text}>{text}</Text>
-                    </Pressable>
-                </Link>
+const ButtonR = ({ text }) => {
+    return (
+        <Pressable style={styles.button}>
+            <Text style={styles.text}>{text}</Text>
+        </Pressable>
     )
 }
 
 const styles = StyleSheet.create({
-    button : {
+    button: {
         color: '#fff',
         backgroundColor: '#00BF66',
         width: 300,
@@ -22,7 +20,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 10
     },
-    text : {
+    text: {
         width: '100%'
     }
 })

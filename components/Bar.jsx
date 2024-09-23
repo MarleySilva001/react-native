@@ -3,9 +3,9 @@ import { View, StyleSheet, Text } from "react-native";
 import { MdHome } from "react-icons/md";
 import { Link } from "expo-router";
 
-const Bar = ({ Titulo, href, icon }) => {
+const Bar = ({ Titulo, href, icon, cor }) => {
     return (
-        <View style={styles.bar}>
+        <View style={[styles.bar, { backgroundColor: cor }]}>
             <Link href={href}>
                 <View>
                 {React.cloneElement(icon, { style: styles.icon })}
@@ -18,7 +18,6 @@ const Bar = ({ Titulo, href, icon }) => {
 
 const styles = StyleSheet.create({
     bar: {
-        backgroundColor: '#00BF66',
         paddingVertical: 10,
         paddingHorizontal: 12,
         flexDirection: 'row',
