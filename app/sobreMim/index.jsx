@@ -8,8 +8,8 @@ const sobreMim = () => {
     const data = [
         {
             id: '1',
-            nome: 'Desenhos',
-            href: 'sobreMim/desenho'
+            nome: 'Livros',
+            href: 'sobreMim/livro'
         },
         {
             id: '2',
@@ -27,7 +27,7 @@ const sobreMim = () => {
             <View style={styles.container}>
                 <Image
                     style={styles.foto}
-                    source={require('../../assets/images/rio2016.png')}
+                    source={require('../../assets/images/marley.jpg')}
                 />
                 <View style={styles.textos}>
                     <Text style={styles.h1}>Bem-Vindo(a) ao meu App</Text>
@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
     foto: {
         width: 180,
         height: 180,
-        borderRadius: 50,
+        borderRadius: 100,
+        borderColor: 'black',
+        borderWidth: 1,
     },
     textos: {
         alignItems: 'center'
