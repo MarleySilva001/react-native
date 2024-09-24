@@ -67,17 +67,22 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 16,
-        backgroundColor: '#f9f9f9', 
+        backgroundColor: 'white', 
     },
     albumContainer: {
-        marginBottom: 16,
+        marginVertical: 8,
+        marginHorizontal:16,
         backgroundColor: 'white',
         borderRadius: 8,
         padding: 10,
         alignItems: 'center',
         elevation: 2, 
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
+        shadowOpacity: 0.2,
+        shadowRadius: 8,
+        shadowOffset:{
+            width:1,
+            height:2,
+        }
     },
     foto: {
         width: 300,
