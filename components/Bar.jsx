@@ -8,7 +8,7 @@ const Bar = ({ Titulo, href, icon, cor }) => {
         <View style={[styles.bar, { backgroundColor: cor }]}>
             <Link href={href}>
                 <View>
-                {React.cloneElement(icon, { style: styles.icon })}
+                {icon}
                 </View>
             </Link>
             <Text style={styles.titulo}>{Titulo}</Text>

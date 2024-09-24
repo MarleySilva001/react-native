@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View, Pressable, Image, FlatList } from "
 import { Link } from "expo-router"
 import ButtonR from "../buttonRouter"
 import Bar from "../../components/Bar"
-import { MdHome } from "react-icons/md"
+import Entypo from '@expo/vector-icons/Entypo';
 
 const sobreMim = () => {
     const data = [
@@ -20,14 +20,14 @@ const sobreMim = () => {
     return (
         <>
             <Bar
-                icon={<MdHome />}
+                icon={<Entypo name="home" size={24} color="white" />}
                 href={'/'}
                 Titulo={'Sobre Mim'}
                 cor={'#00BF66'}
             />
             <View style={styles.container}>
                 <Image
-                    style={styles.foto}
+                    style={styles.foto} 
                     source={require('../../assets/images/marley.jpg')}
                 />
                 <View style={styles.textos}>
@@ -39,10 +39,11 @@ const sobreMim = () => {
                         data={data}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
+                            <Link href={item.href}>
                             <ButtonR
-                                href={item.href}
                                 text={item.nome}
                             />
+                            </Link>
                         )}
                     />
                 </View>

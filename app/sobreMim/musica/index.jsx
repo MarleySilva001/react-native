@@ -1,6 +1,6 @@
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import Bar from "../../../components/Bar";
-import { MdArrowBack } from "react-icons/md";
+import Entypo from '@expo/vector-icons/Entypo';
 
 const Musica = () => {
     const albuns = [
@@ -37,7 +37,7 @@ const Musica = () => {
     return (
         <>
             <Bar 
-                icon={<MdArrowBack />}
+                icon={<Entypo name="chevron-left" size={24} color="white" />}
                 href={'/sobreMim'}
                 Titulo={'Música'}
                 cor={'#00BF66'}
