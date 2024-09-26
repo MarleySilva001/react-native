@@ -1,14 +1,15 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 export const AppContext = createContext()
 export const AppProvider = ({children}) => {
+    const [pedido, setPedido] = useState(0)
     const [carrinho, setCarrinho] = useState(0)
     const [cardapio, setCardapio] = useState([
         {
             id: '1',
             nome: 'Pizza de Calabresa',
             provedor: 'Pizzaria do Zé',
-            valor: 57.90,
+            valor: 47.90,
             quantidade: 0,
             imagem: 'https://sgnh.com.br/wp-content/uploads/2021/07/pizza_calabresa.png',
             descricao: 'Pizza de Calabresa tamanho médio com 6 fatias.'
@@ -89,13 +90,23 @@ export const AppProvider = ({children}) => {
             });
             const totalItens = updatedCardapio.reduce((total, item) => total + item.quantidade, 0);
             setCarrinho(totalItens);
-            console.log(cardapio)
             return updatedCardapio;
         });
     }
+    const cardapioFiltrado = () =>{
+        const cardapioF = cardapio.filter(item => item.quantidade > 0)
+        return cardapioF
+    }
+    useEffect(() => {
+
+        const totalValor = cardapio.reduce((totalV, item) => totalV + (item.valor * item.quantidade), 0);
+        setPedido(totalValor);
+    }, [cardapio]);
+
+       
 
     return (
-        <AppContext.Provider value={{cardapio, setCardapio, carrinho, setCarrinho, alterarQuantidade}}>
+        <AppContext.Provider value={{cardapio, setCardapio, carrinho, setCarrinho, alterarQuantidade, cardapioFiltrado, pedido, setPedido}}>
             {children}
         </AppContext.Provider>
     )
