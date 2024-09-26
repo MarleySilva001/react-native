@@ -1,11 +1,11 @@
 import React from "react";
 import { AppProvider } from "../../scripts/appContext";
-import { Slot } from "expo-router";
+import { Slot, Stack } from "expo-router";
 
-export default Layout = () =>{
+export default Layout = () => {
     return (
         <AppProvider>
-            <Slot />
+                <Slot />
         </AppProvider>
     )
 }
