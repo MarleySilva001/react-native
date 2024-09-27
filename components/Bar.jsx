@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { MdHome } from "react-icons/md";
 import { Link } from "expo-router";
 
 const Bar = ({ Titulo, href, icon, cor }) => {
