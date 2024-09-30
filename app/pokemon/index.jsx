@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Image } from "react-native"
 import { Picker } from "@react-native-picker/picker";
 import Bar from "../../components/Bar";
 import Entypo from '@expo/vector-icons/Entypo';
+import { LinearGradient } from "expo-linear-gradient";
 
 const Pokemon = () => {
 
@@ -63,7 +64,11 @@ const Pokemon = () => {
         cor={'#EE2000'}
         />
             <View style={styles.container}>
-                <View>
+            <LinearGradient 
+            style={styles.background}
+            colors={['white','white','#E5F7FF','#CBF4FF','#89E4FF','#50B9FF']}
+            />
+                <View style={styles.pickerView}> 
                     <Text style={styles.ptype}>Selecione o tipo</Text>
                     <Picker
                         selectedValue={tipo}
@@ -79,7 +84,7 @@ const Pokemon = () => {
                     {tipo ?
                         <>
                             <View>
-                                <Text>Selecione o pokemon</Text>
+                                <Text style={styles.ptype}>Selecione o pokemon</Text>
                                 <Picker
                                     selectedValue={pokemon}
                                     onValueChange={(item) => setPokemon(item)}
@@ -94,7 +99,7 @@ const Pokemon = () => {
         
                                 {sprite ? (
         <View>
-          <Image source={{ uri: sprite }} style={{ width: 300, height: 300 }} />
+          <Image source={{ uri: sprite }} style={{ width: 300, height: 300, marginTop: 30, }} />
         </View>
       ) : null}
                             </View>
@@ -111,14 +116,30 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         paddingVertical: 12
+    },
+    background: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        height: '100%',
     },
     foto: {
         width: 120,
         height: 40
     },
+    pickerView: {
+        justifyContent: 'flex-start',
+        minHeight: 500
+    },
     ptype: {
-        width: 200
+        width: 300,
+        marginBottom: 3,
+        textAlign: 'center',
+        fontWeight: '100',
+        fontSize: 18,
     }
 })
 

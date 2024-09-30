@@ -1,39 +1,12 @@
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import Bar from "../../../components/Bar";
 import Entypo from '@expo/vector-icons/Entypo';
+import { Link } from "expo-router";
+import { useContext } from "react";
+import { DetalheContext } from "../../../scripts/sobreMimContext";
 
 const Musica = () => {
-    const albuns = [
-        {
-            id: '1',
-            nome: 'Rodeo',
-            autor: 'Travis Scott',
-            ano: 2015,
-            capa: 'https://m.media-amazon.com/images/I/81UIqmn17WL._UF1000,1000_QL80_.jpg',
-        },
-        {
-            id: '2',
-            nome: 'Astroworld',
-            autor: 'Travis Scott',
-            ano: 2018,
-            capa: 'https://upload.wikimedia.org/wikipedia/pt/6/63/Astroworld_Travis.jpg',
-        },
-        {
-            id: '3',
-            nome: 'Whole Lotta Red',
-            autor: 'Playboi Carti',
-            ano: 2020,
-            capa: 'https://upload.wikimedia.org/wikipedia/pt/6/6c/Playboi_Carti_-_Whole_Lotta_Red.png',
-        },
-        {
-            id: '4',
-            nome: 'Man on the Moon II: The Legend of Mr. Rager',
-            autor: 'Kid Cudi',
-            ano: 2010,
-            capa: 'https://i.scdn.co/image/ab67616d0000b27359e842b6a3566a141f27f815',
-        },
-    ];
-
+    const {albuns} = useContext(DetalheContext)
     return (
         <>
             <Bar 
@@ -48,6 +21,7 @@ const Musica = () => {
                     showsVerticalScrollIndicator={false}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
+                        <Link href={`/sobreMim/musica/${item.id}`}>
                         <View style={styles.albumContainer}>
                             <Image 
                                 style={styles.foto}
@@ -56,6 +30,7 @@ const Musica = () => {
                             <Text style={styles.albumNome}>{item.nome}({item.ano})</Text>
                             <Text style={styles.albumInfo}>{item.autor} </Text>
                         </View>
+                        </Link>
                     )}
                 />
             </View>
@@ -70,8 +45,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white', 
     },
     albumContainer: {
+        width: '96%',
         marginVertical: 8,
-        marginHorizontal:16,
+        marginHorizontal:'2%',
         backgroundColor: 'white',
         borderRadius: 8,
         padding: 10,
@@ -93,6 +69,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginTop: 8,
+        textAlign: 'center'
     },
     albumInfo: {
         fontSize: 14,

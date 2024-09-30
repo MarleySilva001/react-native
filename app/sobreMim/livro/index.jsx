@@ -1,61 +1,39 @@
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import Bar from "../../../components/Bar";
 import Entypo from '@expo/vector-icons/Entypo';
+import { Link } from "expo-router";
+import { useContext } from "react";
+import { DetalheContext } from "../../../scripts/sobreMimContext";
 
 const Livro = () => {
-    const livros = [
-        {
-            id: '1',
-            nome: 'Duna',
-            autor: 'Frank Herbert',
-            ano: 1965,
-            capa: 'https://m.media-amazon.com/images/I/81zN7udGRUL._AC_UF1000,1000_QL80_.jpg',
-        },
-        {
-            id: '2',
-            nome: 'O Iluminado',
-            autor: 'Stephen King',
-            ano: 1977,
-            capa: 'https://m.media-amazon.com/images/I/8147kKLLvOL._AC_UF1000,1000_QL80_.jpg',
-        },
-        {
-            id: '3',
-            nome: 'Jurassic Park',
-            autor: 'Michael Crichton',
-            ano: 1990,
-            capa: 'https://m.media-amazon.com/images/I/61d8KnB-M1L._AC_UF1000,1000_QL80_.jpg',
-        },
-        {
-            id: '4',
-            nome: 'Caçadores de Trolls',
-            autor: 'Guillermo del Toro e Daniel Kraus',
-            ano: 2015,
-            capa: 'https://m.media-amazon.com/images/I/A1hq2gtYe3L._SL1500_.jpg',
-        },
-    ];
-
+    const {livros} = useContext(DetalheContext)
+    
     return (
         <>
-            <Bar 
+            <Bar
                 icon={<Entypo name="chevron-left" size={24} color="white" />}
                 href={'/sobreMim'}
                 Titulo={'livro'}
                 cor={'#00BF66'}
             />
             <View style={styles.container}>
-                <FlatList 
+                <FlatList
                     data={livros}
                     showsVerticalScrollIndicator={false}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
-                        <View style={styles.livroContainer}>
-                            <Image 
-                                style={styles.foto}
-                                source={{ uri: item.capa }}
-                            />
-                            <Text style={styles.livroNome}>{item.nome}({item.ano})</Text>
-                            <Text style={styles.livroInfo}>{item.autor} </Text>
-                        </View>
+                        <Link href={`/sobreMim/livro/${item.id}`} >
+                            <View style={styles.livroContainer}>
+
+                                <Image
+                                    style={styles.foto}
+                                    source={{ uri: item.capa }}
+                                />
+                                <Text style={styles.livroNome}>{item.nome}({item.ano})</Text>
+                                <Text style={styles.livroInfo}>{item.autor} </Text>
+                            </View>
+                        </Link>
+
                     )}
                 />
             </View>
@@ -66,21 +44,23 @@ const Livro = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white', 
+        backgroundColor: 'white',
+        
     },
     livroContainer: {
+    width: '96%',
         marginVertical: 8,
-        marginHorizontal:16,
+        marginHorizontal: '2%',
         backgroundColor: 'white',
         borderRadius: 8,
         padding: 10,
         alignItems: 'center',
-        elevation: 2, 
+        elevation: 2,
         shadowOpacity: 0.2,
         shadowRadius: 8,
-        shadowOffset:{
-            width:1,
-            height:2,
+        shadowOffset: {
+            width: 1,
+            height: 2,
         }
     },
     foto: {
