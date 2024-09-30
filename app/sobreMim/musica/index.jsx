@@ -42,13 +42,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 16,
-        backgroundColor: 'white', 
     },
     albumContainer: {
         width: '96%',
         marginVertical: 8,
         marginHorizontal:'2%',
-        backgroundColor: 'white',
         borderRadius: 8,
         padding: 10,
         alignItems: 'center',

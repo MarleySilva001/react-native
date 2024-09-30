@@ -44,14 +44,12 @@ const Livro = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white',
-        
+        padding: 16,
     },
     livroContainer: {
     width: '96%',
         marginVertical: 8,
         marginHorizontal: '2%',
-        backgroundColor: 'white',
         borderRadius: 8,
         padding: 10,
         alignItems: 'center',
