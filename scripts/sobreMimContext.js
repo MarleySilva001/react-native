@@ -39,6 +39,7 @@ export const DetalheProvider = ({children}) => {
             autor: 'Travis Scott',
             ano: 2015,
             capa: 'https://m.media-amazon.com/images/I/81UIqmn17WL._UF1000,1000_QL80_.jpg',
+            descricao: "Um dos meu álbuns favoritos, escutei milhares de vezes principalmente em 2023, embora tenha diversas faixas que me marcaram, as minhas favoritas são: Apple Pie, 90210, Oh My Dis Side, com menção honrosa a Antidote."
         },
         {
             id: '2',
@@ -46,6 +47,7 @@ export const DetalheProvider = ({children}) => {
             autor: 'Travis Scott',
             ano: 2018,
             capa: 'https://upload.wikimedia.org/wikipedia/pt/6/63/Astroworld_Travis.jpg',
+            descricao: 'O maior e melhor álbum do Travis Scott, obviamente não poderia estar de fora dessa lista, tem uma ambientação incrivel com otimas faixas, minhas favoritas? Astrothunder, Houstonfornication, Stargazing e Buttlerfly Effect. Uma curiosidade a O.G. version de astrothunder tem um beat bem diferente da versão final, mas ainda assim é bem legal.'
         },
         {
             id: '3',
@@ -53,6 +55,7 @@ export const DetalheProvider = ({children}) => {
             autor: 'Playboi Carti',
             ano: 2020,
             capa: 'https://upload.wikimedia.org/wikipedia/pt/6/6c/Playboi_Carti_-_Whole_Lotta_Red.png',
+            descricao: 'Escutei esse uma faixa dessa álbum alguns anos átras, a capa sempre me chamou muita atenção mas lembro que estranhei bastante a batida, em 2024 dei mais uma chance ao álbum, no começo tive bastante relutancia, mas depois foi uma experiência incrível. algumas das minhas faixas favoritas são: New Neon, King Vamp e Rockstar Made.'
         },
         {
             id: '4',
@@ -60,6 +63,7 @@ export const DetalheProvider = ({children}) => {
             autor: 'Kid Cudi',
             ano: 2010,
             capa: 'https://i.scdn.co/image/ab67616d0000b27359e842b6a3566a141f27f815',
+            descricao: ''
         },
     ];
 

@@ -25,6 +25,8 @@ const musicaInfo = () => {
                 style={styles.foto}
                 source={{uri: album.capa}}
                 />
+                <Text style={styles.h1}>Opinião</Text>
+                <Text style={styles.p}>{album.descricao}</Text>
                 </View>
             </View>
         </>
@@ -55,6 +57,17 @@ const styles = StyleSheet.create({
             width:1,
             height:2,
         }
+    },
+    h1: {
+        width: 300,
+        textAlign: 'center',
+        fontSize: 24,
+        fontWeight: '500',
+        marginVertical: 12
+    },
+    p: {
+        width: 300,
+        textAlign: 'justify'
     }
 })
 
