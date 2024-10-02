@@ -4,59 +4,38 @@ import { Link } from "expo-router";
 
 const Rotas = () => {
 
-    const data =  [
-        {
-            id: '1', href: "/Santander" , text:"banco santander"
-        },
-        {
-            id: '2', href:"/calculadora 2.0",  text:"calculadora 2"
-        },
-        {
-            id: '3', href:"/calculadora simples",  text:"calculadora 1"
-        },
-        {
-            id: '4', href:"/pokemon",  text:"pokemon"
-        },
-        {
-            id: '5', href:"/TaskHub",  text:"Task Hub"
-        },
-        {
-            id: '6', href:"/lista-tarefa",  text:"Lista Tarefa"
-        },
-        {
-            id: '7', href:"/splashScreen",  text:"Splash Screen"
-        },
-        {
-            id: '8', href:"/sobreMim",  text:"Sobre Mim"
-        },
-        {
-            id: '9', href:"/iFome",  text:"iFome"
-        },
-    ]
+    const data = [
+        { id: '1', href: "/Santander", text: "banco santander" },
+        { id: '2', href: "/calculadora 2.0", text: "calculadora 2" },
+        { id: '3', href: "/calculadora simples", text: "calculadora 1" },
+        { id: '4', href: "/pokemon", text: "pokemon" },
+        { id: '5', href: "/TaskHub", text: "Task Hub" },
+        { id: '6', href: "/lista-tarefa", text: "Lista Tarefa" },
+        { id: '7', href: "/splashScreen", text: "Splash Screen" },
+        { id: '8', href: "/sobreMim", text: "Sobre Mim" },
+        { id: '9', href: "/iFome", text: "iFome" },
+        { id: '10', href: "/ImagePicker", text: "image Picker" }
+    ];
 
     return (
         <View style={styles.container}>
             <View style={styles.liRotas}>
-            <FlatList 
-            data={data}
-            keyExtractor={(item) => item.id}
-            renderItem={({item}) =>(
-                <Link href={item.href}>
-                <ButtonR 
-               text={item.text}
-               />
-               </Link>
-            )}
-            />
-               <Link href={'/sobreMim'}>
-               <Pressable>
-                <Text>Clique aqui</Text>
-               </Pressable>
-               </Link>
+                <FlatList
+                    data={data}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => (
+                        <ButtonR text={item.text} href={item.href} />
+                    )}
+                />
+                <Link href='/sobreMim'>
+                    <Pressable>
+                        <Text>Clique aqui</Text>
+                    </Pressable>
+                </Link>
             </View>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {

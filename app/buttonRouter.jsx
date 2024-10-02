@@ -1,28 +1,32 @@
-import { Link } from "expo-router";
 import { Text, Pressable, StyleSheet } from "react-native";
+import { Link } from "expo-router";
 
-const ButtonR = ({ text }) => {
+const ButtonR = ({ text, href }) => {
     return (
-        <Pressable style={styles.button}>
-            <Text style={styles.text}>{text}</Text>
-        </Pressable>
-    )
-}
+        <Link href={href}>
+            <Pressable style={styles.button}>
+                <Text style={styles.text}>{text}</Text>
+            </Pressable>
+        </Link>
+    );
+};
 
 const styles = StyleSheet.create({
     button: {
-        color: '#fff',
         backgroundColor: '#00BF66',
         width: 300,
         borderRadius: 10,
         paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        marginTop: 10
+        paddingVertical: 10,
+        marginTop: 10,
+        alignItems: 'center',
     },
     text: {
-        width: '100%'
-    }
-})
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 16,
+        width: '100%',
+    },
+});
 
-export default ButtonR
+export default ButtonR;
