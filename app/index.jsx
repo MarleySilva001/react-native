@@ -15,13 +15,14 @@ const Rotas = () => {
         { id: '7', href: "/splashScreen", text: "Splash Screen", img: '../assets/images/marley.jpg' },
         { id: '8', href: "/sobreMim", text: "Sobre Mim", img: '../assets/images/marley.jpg' },
         { id: '9', href: "/iFome", text: "iFome", img: '../assets/images/marley.jpg' },
-        { id: '10', href: "/ImagePicker", text: "image Picker", img: '../assets/images/marley.jpg' }
+        { id: '10', href: "/ImagePicker", text: "image Picker", img: '../assets/images/marley.jpg' },
+        { id: '11', href: "/camera", text: "camera", img: '../assets/images/marley.jpg' },
     ];
 
     return (
         <View style={styles.container}>
              <LinearGradient
-            colors={['#00BF66', 'blue']}
+            colors={['white', 'aquamarine']}
             style={styles.background}
         />
             <View style={styles.liRotas}>
