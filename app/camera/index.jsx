@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { View, StyleSheet, Text, Image, Button } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import * as MediaLibrary from "expo-media-library";
 
 export default camera = () => {
     const [permissao, pedirPermissao] = useCameraPermissions()
@@ -8,18 +9,18 @@ export default camera = () => {
     const cameraRef = useRef(null)
     const [facing, setFacing] = useState('back')
 
-    if (!permissao){
-        return(
+    if (!permissao) {
+        return (
             <View></View>
         )
-    } 
+    }
 
-    if (!permissao.granted){
-        return(
+    if (!permissao.granted) {
+        return (
             <View style={styles.container}>
                 <Text style={styles.TextPermission} >Você precisa concender a permissão para usar a camera</Text>
-                <Button 
-                title='pedir permissao' onPress={pedirPermissao}/>
+                <Button
+                    title='pedir permissao' onPress={pedirPermissao} />
             </View>
         )
     }
@@ -33,42 +34,48 @@ export default camera = () => {
     }
 
     const trocaCamera = () => {
-        setFacing( facing == 'back' ? 'front' : 'back')
-    } 
-
-        return(
-            <View style={styles.container}>
-            { foto ? 
-                <View style={styles.container}>
-                    <Image 
-                    source={{ uri: foto.uri}} 
-                    style={styles.foto}
-                    />
-                </View> 
-                :
-        <CameraView
-        facing={facing}
-        style={styles.camera}
-        ref={cameraRef}
-        >
-            <Button title='tirar foto' onPress={tirarFoto} />
-            <Button title='trocar camera' onPress={trocaCamera}/>
-        </CameraView>
+        setFacing(facing == 'back' ? 'front' : 'back')
     }
-    </View>
+
+    const salvarFoto = () => {
+        MediaLibrary.saveToLibraryAsync(foto.uri)
+    }
+
+    return (
+        <View style={styles.container}>
+            {foto ?
+                <View style={styles.container}>
+                    <Button title='Descatar foto' onPress={() => setFoto(null)} />
+                    <Button title='salvar na galeria' onPress={salvarFoto} />
+                    <Image
+                        source={{ uri: foto.uri }}
+                        style={styles.foto}
+                    />
+                </View>
+                :
+                <CameraView
+                    facing={facing}
+                    style={styles.camera}
+                    ref={cameraRef}
+                >
+                    <Button title='tirar foto' onPress={tirarFoto} />
+                    <Button title='trocar camera' onPress={trocaCamera} />
+                </CameraView>
+            }
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
         justifyContent: 'center'
     },
-    TextPermission:{
+    TextPermission: {
         textAlign: 'center',
     },
     camera: {
-        flex:1
+        flex: 1
     },
     foto: {
         height: '100%',
