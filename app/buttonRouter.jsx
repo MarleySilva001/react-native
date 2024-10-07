@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
         width: 90,
         height: 90,
         padding: 10,
-        margin: 2,
-        marginBottom: 8,
+        margin: 0,
+        marginBottom: 30,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     img:{
-        width: 75,
-        height: 75,
+        width: 70,
+        height: 70,
         borderRadius: 8,
-        marginBottom: 4
+        marginBottom: 6
     }
 });
 
