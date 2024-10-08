@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
-import { View, StyleSheet, Text, Image, Button } from 'react-native';
+import { View, StyleSheet, Text, Image, Button, Pressable, SafeAreaView } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import * as MediaLibrary from "expo-media-library";
 
@@ -11,7 +12,7 @@ export default camera = () => {
 
     if (!permissao) {
         return (
-            <View></View>
+            <View />
         )
     }
 
@@ -37,32 +38,51 @@ export default camera = () => {
         setFacing(facing == 'back' ? 'front' : 'back')
     }
 
-    const salvarFoto = () => {
-        MediaLibrary.saveToLibraryAsync(foto.uri)
-    }
+    const salvarFoto = async () => {
+        try {
+            await MediaLibrary.saveToLibraryAsync(foto.uri);
+            alert('Foto salva na galeria!');
+        } catch (error) {
+            console.error("Erro ao salvar a foto: ", error);
+            alert('Erro ao salvar a foto.');
+        }
+    };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             {foto ?
-                <View style={styles.container}>
+                <SafeAreaView style={styles.container}>
                     <Button title='Descatar foto' onPress={() => setFoto(null)} />
                     <Button title='salvar na galeria' onPress={salvarFoto} />
                     <Image
                         source={{ uri: foto.uri }}
                         style={styles.foto}
                     />
-                </View>
+                </SafeAreaView>
                 :
                 <CameraView
                     facing={facing}
                     style={styles.camera}
                     ref={cameraRef}
                 >
-                    <Button title='tirar foto' onPress={tirarFoto} />
-                    <Button title='trocar camera' onPress={trocaCamera} />
+                    <SafeAreaView>
+                    <Pressable
+                    onPress={tirarFoto}
+                    style={styles.btn}
+                    >
+                        <Ionicons name="camera" size={44} color="black" />
+                    </Pressable>
+                    <Pressable
+                    onPress={trocaCamera}
+                    style={styles.btn}
+                    >
+                        <Ionicons name="camera-reverse-sharp" size={44} color="black" />
+                    </Pressable>
+                    
+                    </SafeAreaView>
                 </CameraView>
             }
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -75,10 +95,20 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     camera: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
     },
     foto: {
         height: '100%',
         width: '100%'
+    }, 
+    btn:{
+        backgroundColor: 'white',
+        width:66,
+        height: 66,
+        alignItems: 'center',
+        justifyContent:"center",
+        borderRadius: 50,
     }
 }) 
