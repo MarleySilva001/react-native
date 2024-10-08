@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     },
     foto: {
         width: 120,
-        height: 40
+        height: 40,
     },
     pickerView: {
         justifyContent: 'flex-start',

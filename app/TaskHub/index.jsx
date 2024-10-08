@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
         fontSize: 42
     },
     secondTitle: {
-        fontWeight: '760',
         fontSize: 24
     },
     inputList: {

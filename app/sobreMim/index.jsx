@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, Pressable, Image, FlatList } from "react-native"
+import { ScrollView, StyleSheet, Text, View, Pressable, Image, FlatList, SafeAreaView } from "react-native"
 import { Link } from "expo-router"
 import ButtonR from "../buttonRouter"
 import Bar from "../../components/Bar"
@@ -25,7 +25,7 @@ const sobreMim = () => {
                 Titulo={'Sobre Mim'}
                 cor={'#00BF66'}
             />
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <Image
                     style={styles.foto} 
                     source={require('../../assets/images/marley.jpg')}
@@ -40,14 +40,14 @@ const sobreMim = () => {
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
                             <Link href={item.href}>
-                            <ButtonR
-                                text={item.nome}
-                            />
+                            <Pressable style={styles.button}>
+                                <Text style={styles.text}>{item.nome}</Text>
+                            </Pressable>
                             </Link>
                         )}
                     />
                 </View>
-            </View>
+            </SafeAreaView>
         </>
     )
 }
@@ -55,13 +55,14 @@ const sobreMim = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        gap: 22
+        gap: 22,
+        marginTop: 30,
     },
     foto: {
-        width: 180,
-        height: 180,
+        width: 150,
+        height: 150,
         borderRadius: 100,
         borderColor: 'black',
         borderWidth: 1,
@@ -77,7 +78,23 @@ const styles = StyleSheet.create({
     p: {
         width: 300,
         textAlign: 'justify'
-    }
+    },
+    button: {
+        width: 280,
+        padding: 10,
+        margin: 0,
+        borderRadius: 5,
+        marginBottom: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#00BF66'
+    },
+    text: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 16,
+        width: '100%',
+    },
 })
 
 export default sobreMim

@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
         gap: 4
     },
     titulo: {
-        fontWeight: "bold",
         fontSize: 18,
     },
     subtitulo: {
@@ -104,13 +103,11 @@ const styles = StyleSheet.create({
         color: 'gray',
     },
     valor: {
-        fontWeight: 'bold',
         fontSize: 22,
     },
     p: {
         fontSize: 11,
         minHeight:26,
-        fontWeight: 'thin'
     },
     qtdContainer: {
         flexDirection: 'row',
@@ -123,7 +120,6 @@ const styles = StyleSheet.create({
     },
     qtdbox: {
         fontSize: 14,
-        fontWeight: 600,
         paddingHorizontal: 12,
         color: 'black',
         textAlign: 'center',
