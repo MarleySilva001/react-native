@@ -1,10 +1,27 @@
-import { SafeAreaView, StyleSheet, View, FlatList, Pressable, Text } from "react-native"
+import { SafeAreaView, StyleSheet, View, FlatList, Pressable, Text, Image } from "react-native"
 import Bar from "../../components/Bar"
 import Entypo from '@expo/vector-icons/Entypo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Link } from "expo-router";
+import { useEffect, useState } from "react";
 
 const Memoria = () => {
+    const [memoria, setMemoria] = useState(null)
+
+    const getData = async () => {
+        try {
+          const jsonValue = await AsyncStorage.getItem('memoria');
+           console.log(jsonValue != null ? JSON.parse(jsonValue) : null) 
+          setMemoria(JSON.parse(jsonValue))
+        } catch (e) {
+          console.log(e)
+        }
+      };
+
+      useEffect(() => {
+        getData()
+      },[])
+
     return (
         <>
             <Bar
@@ -14,9 +31,18 @@ const Memoria = () => {
                 cor={'#6600FF'}
             />
             <SafeAreaView style={styles.container}>
-                <View style={styles.flatlist}>
-                <FlatList />
-                </View>
+                {memoria ? <View style={styles.flatlist}>
+                
+                        <View style={styles.flatlist}>
+                           <Text>{memoria.Titulo}</Text>
+                           <Image 
+                           style={styles.img}
+                           source={{uri: memoria.Img}}
+                           />
+                        </View>
+                    
+                </View> : <View></View>}
+                
                 <Link href={'/memoria/novamemoria'}>
                     <Pressable style={styles.btnnew}>
                         <View style={styles.centro}>
@@ -24,6 +50,7 @@ const Memoria = () => {
                         <Text>Criar uma nova memoria</Text>
                         </View>
                     </Pressable>
+                    
                 </Link>
             </SafeAreaView>
         </>
@@ -36,7 +63,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     flatlist:{
-        minHeight:'5vh',
+        minHeight:'20vh',
         maxHeight: '80vh',
     },
     btnnew: {
@@ -49,6 +76,11 @@ const styles = StyleSheet.create({
     }, 
     centro: {
         alignItems: 'center',
+    },
+    img:{
+        width: 300,
+        height: 300,
+        resizeMode: 'contain'
     }
 })
 
