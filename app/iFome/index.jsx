@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 10,
         alignItems: 'center',
-        elevation: 1,
         shadowOpacity: 0.18,
         shadowRadius: 8,
         shadowOffset: {
