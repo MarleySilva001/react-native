@@ -15,7 +15,7 @@ const NewMemory = () => {
         Ano: '',
         Localizacao: '',
         Descricao: '',
-        Img: ''
+        Img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX9Qf9oqGyoUnh2DPm60G39F0WyPlp2TQB1Q&s'
     })
     const [image, setImage] = useState('')
 
@@ -43,12 +43,13 @@ const NewMemory = () => {
         })
     }
 
-    const storeData = async (value) => {
+    const storeData = async (novaMemoria) => {
         try {
-            
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem('memoria', jsonValue);
-            console.log(AsyncStorage.getItem('memoria'))
+            const memoriaArmazenada = await AsyncStorage.getItem('memoria');
+            const array = memoriaArmazenada ? JSON.parse(memoriaArmazenada): [];
+            array.push(novaMemoria) 
+            const jsonArray = JSON.stringify(array);
+            await AsyncStorage.setItem('memoria', jsonArray );
         } catch (e) {
             console.log(e)
         }
