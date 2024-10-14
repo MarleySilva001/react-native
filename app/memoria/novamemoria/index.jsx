@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
-import { Image, Pressable, SafeAreaView, StyleSheet, Text, TextInput } from "react-native";
+import { View, Image, Pressable, SafeAreaView, StyleSheet, Text, TextInput, Button } from "react-native";
 import Bar from "../../../components/Bar"
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker'
-import { View } from "react-native";
-import { Link } from "expo-router";
+import { CameraView, useCameraPermissions } from 'expo-camera';
+import { Link, useRouter } from "expo-router";
 
 
 const NewMemory = () => {
+    const [permissao, pedirPermissao] = useCameraPermissions()
     const [formData, setFormData] = useState({
         Titulo: '',
         Ano: '',
         Localizacao: '',
         Descricao: '',
-        Img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX9Qf9oqGyoUnh2DPm60G39F0WyPlp2TQB1Q&s'
+        Img: ''
     })
     const [image, setImage] = useState('')
+    const router = useRouter()
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -26,14 +28,30 @@ const NewMemory = () => {
             aspect: [4, 3],
             quality: 1,
         });
-
-        console.log(result)
-
         if (!result.canceled) {
             setImage(result.assets[0].uri);
-            handleChangeInput('Img',result.assets[0].uri)
+            handleChangeInput('Img', result.assets[0].uri)
             console.log(result.assets[0].uri)
         }
+    }
+    
+    const openCamera = () => {
+        if (!permissao.granted) {
+        return (
+            <View style={styles.container}>
+                <Text >Você precisa concender a permissão para usar a camera</Text>
+                <Button
+                    title='pedir permissao' onPress={pedirPermissao} />
+            </View>
+        )
+    }
+    else{
+        return(
+            <CameraView>
+
+            </CameraView>
+        )
+    }
     }
 
     const handleChangeInput = (name, value) => {
@@ -44,14 +62,20 @@ const NewMemory = () => {
     }
 
     const storeData = async (novaMemoria) => {
-        try {
-            const memoriaArmazenada = await AsyncStorage.getItem('memoria');
-            const array = memoriaArmazenada ? JSON.parse(memoriaArmazenada): [];
-            array.push(novaMemoria) 
-            const jsonArray = JSON.stringify(array);
-            await AsyncStorage.setItem('memoria', jsonArray );
-        } catch (e) {
-            console.log(e)
+        if (novaMemoria.Ano === '' || novaMemoria.Titulo === '' || novaMemoria.Img === '' || novaMemoria.Descricao === '' || novaMemoria.Localizacao === '') {
+            alert('preencha todos os campos')
+        }
+        else {
+            try {
+                const memoriaArmazenada = await AsyncStorage.getItem('memoria');
+                const array = memoriaArmazenada ? JSON.parse(memoriaArmazenada) : [];
+                array.push(novaMemoria)
+                const jsonArray = JSON.stringify(array);
+                await AsyncStorage.setItem('memoria', jsonArray);
+                router.push('/memoria')
+            } catch (e) {
+                console.log(e)
+            }
         }
     };
 
@@ -68,41 +92,48 @@ const NewMemory = () => {
                     <TextInput
                         placeholder="Titulo"
                         value={formData.Titulo}
-                        onChangeText={(value) => handleChangeInput( 'Titulo', value)}
+                        onChangeText={(value) => handleChangeInput('Titulo', value)}
                         style={styles.input}
                     />
                     <TextInput
                         placeholder="Ano"
                         value={formData.Ano}
-                        onChangeText={(value) => handleChangeInput( 'Ano', value)}
+                        onChangeText={(value) => handleChangeInput('Ano', value)}
                         style={styles.input}
                     />
                     <TextInput
                         placeholder="Localizacao"
                         value={formData.Localizacao}
-                        onChangeText={(value) => handleChangeInput( 'Localizacao', value)}
+                        onChangeText={(value) => handleChangeInput('Localizacao', value)}
                         style={styles.input}
                     />
                     <TextInput
                         placeholder="Descricao"
                         value={formData.Descricao}
-                        onChangeText={(value) => handleChangeInput( 'Descricao', value)}
+                        onChangeText={(value) => handleChangeInput('Descricao', value)}
                         style={styles.input}
                     />
-                    <Pressable
-                        style={styles.btnimg}
-                        onPress={pickImage}
-                    >
-                        <FontAwesome name="photo" size={24} color="#6600FF" />
-                        <Text style={styles.pimg}>Adicionar foto</Text>
-                    </Pressable>
+                    <View style={styles.btnsImgRow}>
+                        <Pressable
+                            style={styles.btnimg}
+                            onPress={pickImage}
+                        >
+                            <FontAwesome name="photo" size={24} color="#6600FF" />
+                            <Text style={styles.pimg}>Adicionar foto</Text>
+                        </Pressable>
+                        <Pressable
+                            style={styles.btnimg}
+                            onPress={openCamera}
+                        >
+                            <FontAwesome name="camera-retro" size={24} color="#6600FF" />
+                            <Text style={styles.pimg}>Tirar foto</Text>
+                        </Pressable>
+                    </View>
                     {image && <Image style={styles.foto} source={{ uri: image }} />}
                 </View>
-                <Link href={'/memoria'}>
                 <Pressable style={styles.btn} onPress={() => storeData(formData)}>
                     <Text style={styles.p}>Adicionar</Text>
                 </Pressable>
-                </Link>
             </SafeAreaView>
         </>
     )
@@ -135,6 +166,11 @@ const styles = StyleSheet.create({
         height: 300,
         resizeMode: 'contain'
     },
+    btnsImgRow:{
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
     btn: {
         backgroundColor: '#6600FF',
         width: 340,
@@ -149,6 +185,7 @@ const styles = StyleSheet.create({
     },
     pimg: {
         color: '#6600FF',
+        marginLeft: 6
     }
 })
 
