@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Image, Pressable, SafeAreaView, StyleSheet, Text, TextInput, Button } from "react-native";
+import { View, Image, Pressable, SafeAreaView, StyleSheet, Text, TextInput, Button, Modal } from "react-native";
 import Bar from "../../../components/Bar"
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -34,25 +34,7 @@ const NewMemory = () => {
             console.log(result.assets[0].uri)
         }
     }
-    
-    const openCamera = () => {
-        if (!permissao.granted) {
-        return (
-            <View style={styles.container}>
-                <Text >Você precisa concender a permissão para usar a camera</Text>
-                <Button
-                    title='pedir permissao' onPress={pedirPermissao} />
-            </View>
-        )
-    }
-    else{
-        return(
-            <CameraView>
 
-            </CameraView>
-        )
-    }
-    }
 
     const handleChangeInput = (name, value) => {
         setFormData({
@@ -123,10 +105,11 @@ const NewMemory = () => {
                         </Pressable>
                         <Pressable
                             style={styles.btnimg}
-                            onPress={openCamera}
                         >
-                            <FontAwesome name="camera-retro" size={24} color="#6600FF" />
-                            <Text style={styles.pimg}>Tirar foto</Text>
+                            <Link href={'/memoria/camera'}>
+                                <FontAwesome name="camera-retro" size={24} color="#6600FF" />
+                                <Text style={styles.pimg}>Tirar foto</Text>
+                            </Link>
                         </Pressable>
                     </View>
                     {image && <Image style={styles.foto} source={{ uri: image }} />}
@@ -151,7 +134,7 @@ const styles = StyleSheet.create({
         minHeight: '50vh',
     },
     input: {
-        height: 24,
+        height: 30,
         padding: 6,
         marginBottom: 10,
         backgroundColor: '#e8e8e8',
@@ -166,7 +149,7 @@ const styles = StyleSheet.create({
         height: 300,
         resizeMode: 'contain'
     },
-    btnsImgRow:{
+    btnsImgRow: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between'

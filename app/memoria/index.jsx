@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     card: {
-        backgroundColor: 'white',
+        backgroundColor: '#F9F9F9',
         position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
@@ -115,12 +115,6 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         gap: 6,
         marginBottom: 10,
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        shadowOffset: {
-            width: 1,
-            height: 2,
-        }
     },
     h1: {
         fontSize: 18,
